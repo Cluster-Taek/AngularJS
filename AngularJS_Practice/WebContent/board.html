@@ -37,7 +37,7 @@
 		}
 		
 		$scope.update = function(id) {
-			if(!id) return; //예외처리
+			if(id) return; //예외처리
 			
 			var idx = -1;
 			for(var i = 0; i < $scope.boardlist.length; i++) {
