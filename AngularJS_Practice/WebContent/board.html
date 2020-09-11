@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Board Sample</title>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script>
+	var app = angular.module("myApp",[]);
+	
+	app.controller("myCtrl", function($scope) {
+		$scope.boardlist = [
+			{id : 1, title : 'Title1', writer : 'Writer1'},
+			{id : 2, title : 'Title2', writer : 'Writer2'},
+			{id : 3, title : 'Title3', writer : 'Writer3'},
+			{id : 4, title : 'Title4', writer : 'Writer4'}
+		];
+		
+		
+		$scope.remove = function(id) {
+			if(!id) return; //예외처리
+			
+			var idx = -1;
+			for(var i = 0; i < $scope.boardlist.length; i++) {
+				if($scope.boardlist[i].id === id) {
+					idx = i;
+					break;
+				}
+			}
+			
+			if(idx === -1) return; //예외처리
+			
+			$scope.boardlist.splice(idx, 1); //JavaScript에서의 array의 삭제
+				
+		}
+	});
+</script>
+</head>
+
+<body>
+	<div ng-app="myApp" ng-controller="myCtrl">
+		<table border=1">
+			<tr>
+				<td style="width: 50px">No.</td>
+				<td style="width: 200px">Title</td>
+				<td style="width: 50px">Name</td>
+				
+			</tr>
+			<tr ng-repeat="item in boardlist"> 
+				<td style="width: 50px">{{$index+1}}</td>
+				<td style="width: 200px">{{item.title}}</td>
+				<td style="width: 50px">{{item.writer}}</td>
+				
+			</tr>
+		</table>
+	</div>
+</body>
+</html>
